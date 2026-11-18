@@ -1,0 +1,14 @@
+# Local test only: mirrors the Railway template (one service, one volume, generated setup code).
+services:
+  albyhub:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      PORT: "8080"
+      SETUP_CODE: "${SETUP_CODE:?set SETUP_CODE}"
+    volumes:
+      - albyhub-data:/data
+    stop_grace_period: 120s
+volumes:
+  albyhub-data:
